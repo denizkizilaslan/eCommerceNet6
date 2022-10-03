@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Api", "src\Services\ProductService\ProductService.Api\ProductService.Api.csproj", "{D228DC1B-A2EF-4720-A580-9156853185DC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityService", "IdentityService", "{5FAEACBD-C30D-4D1F-B412-6C177DD4E2F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Api", "src\Services\IdentityService\IdentityService.Api\IdentityService.Api.csproj", "{D1E6E68B-EB4B-4151-A1E5-0E0E659A67FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,10 @@ Global
 		{D228DC1B-A2EF-4720-A580-9156853185DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D228DC1B-A2EF-4720-A580-9156853185DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D228DC1B-A2EF-4720-A580-9156853185DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1E6E68B-EB4B-4151-A1E5-0E0E659A67FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1E6E68B-EB4B-4151-A1E5-0E0E659A67FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1E6E68B-EB4B-4151-A1E5-0E0E659A67FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1E6E68B-EB4B-4151-A1E5-0E0E659A67FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +65,8 @@ Global
 		{53BC1210-743F-4BC7-927E-5339644020AF} = {0169D98C-8FF2-4C22-ADA6-7FD66B725DB9}
 		{B2DC3BE1-9492-407C-996E-44CA20478FFC} = {0169D98C-8FF2-4C22-ADA6-7FD66B725DB9}
 		{D228DC1B-A2EF-4720-A580-9156853185DC} = {0169D98C-8FF2-4C22-ADA6-7FD66B725DB9}
+		{5FAEACBD-C30D-4D1F-B412-6C177DD4E2F7} = {AEBC02D0-AAD3-40AA-8419-A3B2387AD058}
+		{D1E6E68B-EB4B-4151-A1E5-0E0E659A67FD} = {5FAEACBD-C30D-4D1F-B412-6C177DD4E2F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D837E9DC-0EAF-4557-B327-79BB3729D549}
