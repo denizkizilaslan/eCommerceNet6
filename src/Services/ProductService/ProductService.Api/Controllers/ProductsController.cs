@@ -13,7 +13,7 @@ namespace ProductService.Api.Controllers
     {
         private IProductService productService;
         private readonly IBrandService brandService;
-        public ProductsController(IProductService productService,IBrandService brandService)
+        public ProductsController(IProductService productService, IBrandService brandService)
         {
             this.productService = productService;
             this.brandService = brandService;
@@ -21,25 +21,22 @@ namespace ProductService.Api.Controllers
 
         [HttpGet]
         [Route("GetProducts")]
-        public IActionResult GetProducts()
-        {
-            List<Product> productlist = new List<Product>();
-            productlist = productService.GetProducts();
+        public IActionResult GetProducts() => Ok(productService.GetProducts());
 
-            return Ok(productlist);
+        [HttpGet]
+        [Route("GetProductById/{productId}")]
+        public IActionResult GetProductById(int productId)
+        {
+            var response = productService.GetProduct(productId);
+            ProductModel model = new ProductModel { Name = response.Name, BrandId = response.Brand.Id, Description = response.Description, Price = response.Price, Quantity = 1 };
+            return Ok(model);
         }
+
 
         [HttpGet]
         [Route("GetProductsByBrandId/{brandId}")]
-        public IActionResult GetProductsByBrandId(int brandId)
-        {
+        public IActionResult GetProductsByBrandId(int brandId) => Ok(productService.GetProductsByBrandId(brandId));
 
-            List<Product> productlist = new List<Product>();
-            productlist = productService.GetProductsByBrandId(brandId);
-
-
-            return Ok(productlist);
-        }
 
         [HttpPost]
         public IActionResult AddProduct(ProductModel request)
@@ -52,6 +49,10 @@ namespace ProductService.Api.Controllers
 
             return Ok(model);
         }
+
+        [HttpPost]
+        [Route("AddProduct")]
+        public IActionResult AddProduct([FromBody] Product model) => Ok(productService.AddProduct(model));
 
     }
 }

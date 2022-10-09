@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model WebApp.Domain.Models.ViewModels.CustomerBasket
+
+<section class="cart_area section_padding">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Ürün</th>
+                            <th scope="col">Fiyat</th>
+                            <th scope="col">Miktar</th>
+                            <th scope="col">Toplam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="~/img/gallery/productimage.jpg" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <p>@item.ProductName</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>@item.Price ₺</h5>
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                                        <input class="input-number" type="text" value="1" min="0" max="10">
+                                        <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>@item.Price ₺</h5>
+                                </td>
+                            </tr>
+                        }
+
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <h5>Toplam</h5>
+                            </td>
+                            <td>
+                                <h5>@Model.Items.Sum(c=> c.Price) ₺ </h5>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="checkout_btn_inner float-right">
+                    <a class="btn_1" asp-controller="Home" asp-action="Shop">Alışverişe Devam et</a>
+                    <a class="btn_1 checkout_btn_1" id="orderPost" style="color:#fff !important;cursor:pointer;" data-id="@Model.CustomerId">Siparişi Tamamla</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -1,6 +1,5 @@
 ﻿using IdentityService.Api.Application.Models;
-using IdentityService.Api.Application.Services;
-using Microsoft.AspNetCore.Http;
+using IdentityService.Api.Application.Repositories.Abstraction;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityService.Api.Controllers
@@ -18,11 +17,11 @@ namespace IdentityService.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginRequestModel loginRequestModel)
+        [Route("Login")]
+        public async Task<LoginResponseModel> Login([FromBody] LoginRequestModel loginRequestModel)
         {
             var result = await identityService.Login(loginRequestModel);
-
-            return Ok(result);
+            return result;
         }
     }
 }

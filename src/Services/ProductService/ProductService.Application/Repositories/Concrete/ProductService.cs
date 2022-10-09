@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ProductService.Application.Repositories.Concrete
 {
-    public class ProducttService : IProductService
+    public class ProductService : IProductService
     {
         private readonly IGenericRepository<Product> _repository;
 
-        public ProducttService(IGenericRepository<Product> repository)
+        public ProductService(IGenericRepository<Product> repository)
         {
             _repository = repository;
         }

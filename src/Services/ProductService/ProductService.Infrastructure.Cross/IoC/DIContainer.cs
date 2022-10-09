@@ -30,7 +30,7 @@ namespace ProductService.Infrastructure.Cross.IoC
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IBrandService, BrandService>();
-            services.AddTransient<IProductService, ProducttService>();
+            services.AddTransient<IProductService, ProductService.Application.Repositories.Concrete.ProductService>();
         }
     }
 }

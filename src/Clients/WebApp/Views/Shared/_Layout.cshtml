@@ -1,0 +1,226 @@
+﻿@using Microsoft.AspNetCore.Http
+@using WebApp.Domain.Models.User
+@using WebApp.Extensions
+@{
+    var user = Context.Session?.GetString("username");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Yeni Sezon Ürünleri, Butikler, Kozmetik</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/WebApplication.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/A.bootstrap.min.css owl.carousel.min.css flaticon.css slicknav.css animate.min.css magnific-popup.css fontawesome-all.min.css themify-icons.css slick.css nice-selec.css">
+    <link rel="stylesheet" href="~/css/A.style.css.pagespeed.cf.uHSBqd43zq.css">
+</head>
+<body>
+    <header>
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper">
+
+                        <div class="logo">
+                            <a asp-controller="Home" asp-action="Shop"><img style="width:200px" src="~/img/logo/25399885.png" alt=""></a>
+                        </div>
+
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a asp-controller="Home" asp-action="Shop">Ürünler </a></li>
+                                    <li><a href="#">Hakkımızda </a></li>
+                                    <li class="hot">
+                                        <a href="#">Markalar</a>
+                                        <ul class="submenu">
+                                            <li><a href="#"> Marka Listesi</a></li>
+                                            <li><a href="#"> Ürün Detay</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">İletişime Geç  </a></li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="header-right">
+                            <ul>
+                               
+                                @if (user == null)
+                                {
+                                    <li> <a asp-controller="Home" asp-action="Login"><span class="flaticon-user"></span></a></li>
+                                }
+                                else
+                                {
+                                    <li> <a asp-controller="Home" asp-action="Login">   <span class="">@user</span></a></li>
+                                }
+                                <li class="hot"><a asp-controller="Home" asp-action="Cart"><span class="flaticon-shopping-cart"> @ViewBag.BasketCount</span></a> </li>
+                                 <li>
+                                    <div class="nav-search search-switch">
+                                        <span class="flaticon-search"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+
+                                <div class="footer-logo">
+                                    <a asp-controller="Home" asp-action="Shop"><img style="width:200px" src="~/img/logo/25399885.png" alt=""></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <div class="footer-pera">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Biz Kimiz</h4>
+                                <ul>
+                                    <li><a href="#"> Biz Kimiz</a></li>
+                                    <li><a href="#">  Kariyer</a></li>
+                                    <li><a href="#">  İletişim</a></li>
+                                    <li><a href="#"> Güvenli Alışveriş </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4> Kampanyalar</h4>
+                                <ul>
+                                    <li><a href="#">Aktif Kampanyalar</a></li>
+                                    <li>
+                                        <a href="#">Elite Üyelik</a>
+                                    </li>
+                                    <li><a href="#">  Hediye Fikirleri</a></li>
+                                    <li><a href="#">  Fırsatlar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Yardım</h4>
+                                <ul>
+                                    <li><a href="#">  Sıkça Sorulan Sorular </a></li>
+                                    <li><a href="#">Canlı Yardım</a></li>
+                                    <li><a href="#"> Nasıl İade Edebilirim</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-xl-7 col-lg-8 col-md-7">
+                        <div class="footer-copy-right">
+                            <p>
+                                <script>document.write(new Date().getFullYear());</script>  <i class="fa fa-heart" aria-hidden="true"></i> by <a asp-controller="Home" asp-action="Shop" target="_blank">Deniz Kızılaslan</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-5">
+                        <div class="footer-copy-right f-right">
+
+                            <div class="footer-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                                <a href="#"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <div class="search-model-box">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-btn">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Ara">
+            </form>
+        </div>
+    </div>
+    <script src="~/js/common.js"></script>
+    <script src="~/js/vendor/jquery-1.12.4.min.js"></script>
+    <a href="~/lib/jquery/dist/jquery.min.map">~/lib/jquery/dist/jquery.min.map</a>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+    <script src="~/js/vendor/modernizr-3.5.0.min.js"></script>
+
+    <script src="~/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/js/popper.min.js bootstrap.min.js jquery.slicknav.min.js.pagespeed.jc.zrnatLu9Rq.js"></script>
+    <script>eval(mod_pagespeed_8XvX1POCNb);</script>
+    <script>eval(mod_pagespeed_kXO2E4dy8z);</script>
+
+    <script>eval(mod_pagespeed_Sd_KFwdmO1);</script>
+
+    <script src="~/js/owl.carousel.min.js slick.min.js wow.min.js animated.headline.js.pagespeed.jc.X4gIWYMYpg.js"></script>
+    <script>eval(mod_pagespeed_N5TP4Si$Km);</script>
+    <script>eval(mod_pagespeed_oJKzjwmvfM);</script>
+
+    <script>eval(mod_pagespeed_jz8SqYmeJS);</script>
+    <script>eval(mod_pagespeed_mxAeZXiKbo);</script>
+    <script src="~/js/jquery.magnific-popup.js jquery.scrollUp.min.js jquery.nice-select.min.js jquery.sticky.js contact.js jquery.form.js.pagespeed.jc.LqcBOQ_8ho.js"></script>
+    <script>eval(mod_pagespeed_g2GAzaUxjY);</script>
+
+    <script>eval(mod_pagespeed_xuLOn2iElt);</script>
+    <script>eval(mod_pagespeed_N6bHp4zs7J);</script>
+    <script>eval(mod_pagespeed_ij5YVdXwPx);</script>
+
+    <script>eval(mod_pagespeed_aJKQ_YSEYl);</script>
+    <script>eval(mod_pagespeed_ZFtOrrowue);</script>
+    <script src="~/js/jquery.validate.min.js mail-script.js jquery.ajaxchimp.min.js plugins.js main.js.pagespeed.jc.aoiGgW9qYP.js"></script>
+    <script>eval(mod_pagespeed_fPWP9CjyiB);</script>
+    <script>eval(mod_pagespeed_k3Ax3BEFUg);</script>
+    <script>eval(mod_pagespeed_N9KXf0fmqt);</script>
+
+    <script>eval(mod_pagespeed_K7UqwxaWUN);</script>
+    <script>eval(mod_pagespeed_F95M9nW0_A);</script>
+
+    <script async="" src="../../gtag/js.js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script defer="" src="../../beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"754b45726a6fcc08","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.8.1","si":100}' crossorigin="anonymous"></script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -7,7 +7,7 @@ namespace ProductService.Domain.Mapping
     {
         public ProductMap()
         {
-            Table("Product");
+            Table("Products");
             Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.Name);
             Map(x => x.Quantity);

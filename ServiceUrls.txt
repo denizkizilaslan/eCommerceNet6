@@ -1,0 +1,10 @@
+
+http://localhost:5001	: IdentityService 
+
+http://localhost:5002	: ProductService 
+
+http://localhost:5003   : BasketService 
+
+http://localhost:5004  : OrderService 
+
+http://localhost:5005  : WebApp 
