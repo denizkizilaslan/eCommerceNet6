@@ -3,8 +3,11 @@ using OrderService.Api.Extensions;
 using OrderService.Application.Events.EventHandlers;
 using OrderService.Application.Events.Events;
 using OrderService.Infrastructure.Cross.IoC;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseSerilog();
+ElasticLogger.ConfigureSeriLog(builder.Configuration);
 // Add services to the container.
 DIContainer.RegisterDependencies(builder.Services, builder.Configuration);
 

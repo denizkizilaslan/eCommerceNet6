@@ -1,7 +1,11 @@
+using ProductService.Api.Extensions;
 using ProductService.Infrastructure.Cross.IoC;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host.UseSerilog();
+ElasticLogger.ConfigureSeriLog(builder.Configuration);
 // Add services to the container.
 DIContainer.RegisterDependencies(builder.Services, builder.Configuration);
 

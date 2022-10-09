@@ -70,7 +70,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Infrastructure
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrderConfirmService", "OrderConfirmService", "{6FA592AA-00D6-41BE-8579-C3B0991784A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderConfirmService.Console", "src\Services\OrderConfirmService\OrderConfirmService.Console\OrderConfirmService.Console.csproj", "{FDE90430-3E61-49CA-8952-3D627626D75F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderConfirmService.Console", "src\Services\OrderConfirmService\OrderConfirmService.Console\OrderConfirmService.Console.csproj", "{FDE90430-3E61-49CA-8952-3D627626D75F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "elasticsearch", "elasticsearch", "{D7B448A2-EA45-4CBA-BC0E-5F6B6F171BA1}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose-elasticserarch.yml = docker-compose-elasticserarch.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -178,6 +183,7 @@ Global
 		{243E3188-C81F-48F2-9921-17E89AFBB33E} = {30468194-F8FC-4BF9-AADE-8EC6529D3C57}
 		{6FA592AA-00D6-41BE-8579-C3B0991784A6} = {AEBC02D0-AAD3-40AA-8419-A3B2387AD058}
 		{FDE90430-3E61-49CA-8952-3D627626D75F} = {6FA592AA-00D6-41BE-8579-C3B0991784A6}
+		{D7B448A2-EA45-4CBA-BC0E-5F6B6F171BA1} = {2D3336E7-36F9-4D8D-BCBF-AF042EC89E75}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D837E9DC-0EAF-4557-B327-79BB3729D549}

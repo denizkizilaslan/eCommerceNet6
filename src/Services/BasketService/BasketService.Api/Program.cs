@@ -1,8 +1,12 @@
 using BasketService.Api.Core.Application.Repositories;
 using BasketService.Api.Extensions;
 using BasketService.Api.Infrastructure.Repository;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseSerilog();
+ElasticLogger.ConfigureSeriLog(builder.Configuration);
+
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

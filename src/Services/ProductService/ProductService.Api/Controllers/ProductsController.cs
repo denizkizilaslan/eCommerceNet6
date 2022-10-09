@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ProductService.Application.Model;
 using ProductService.Application.ModelToEntitiy;
 using ProductService.Application.Repositories.Abstraction;
@@ -13,20 +13,27 @@ namespace ProductService.Api.Controllers
     {
         private IProductService productService;
         private readonly IBrandService brandService;
-        public ProductsController(IProductService productService, IBrandService brandService)
+        private readonly ILogger<ProductsController> logger;
+        public ProductsController(IProductService productService, IBrandService brandService, ILogger<ProductsController> logger)
         {
             this.productService = productService;
             this.brandService = brandService;
+            this.logger = logger;
         }
 
         [HttpGet]
         [Route("GetProducts")]
-        public IActionResult GetProducts() => Ok(productService.GetProducts());
+        public IActionResult GetProducts()
+        {
+            logger.LogInformation("ProuctService executed");
+            return Ok(productService.GetProducts());
+        }
 
         [HttpGet]
         [Route("GetProductById/{productId}")]
         public IActionResult GetProductById(int productId)
         {
+            logger.LogInformation($"GetProductById executed. Product Id: {productId}");
             var response = productService.GetProduct(productId);
             ProductModel model = new ProductModel { Name = response.Name, BrandId = response.Brand.Id, Description = response.Description, Price = response.Price, Quantity = 1 };
             return Ok(model);
@@ -35,12 +42,18 @@ namespace ProductService.Api.Controllers
 
         [HttpGet]
         [Route("GetProductsByBrandId/{brandId}")]
-        public IActionResult GetProductsByBrandId(int brandId) => Ok(productService.GetProductsByBrandId(brandId));
+        public IActionResult GetProductsByBrandId(int brandId)
+        {
+            logger.LogInformation($"GetProductsByBrandId executed. Brand Id: {brandId}");
+            return Ok(productService.GetProductsByBrandId(brandId));
+        }
 
 
         [HttpPost]
         public IActionResult AddProduct(ProductModel request)
         {
+            string json = JsonConvert.SerializeObject(request);
+            logger.LogInformation($"AddProduct executed. ProductModel: {json}");
             Product model = new Product();
 
             model = request.ToEntity();
@@ -49,10 +62,5 @@ namespace ProductService.Api.Controllers
 
             return Ok(model);
         }
-
-        [HttpPost]
-        [Route("AddProduct")]
-        public IActionResult AddProduct([FromBody] Product model) => Ok(productService.AddProduct(model));
-
     }
 }

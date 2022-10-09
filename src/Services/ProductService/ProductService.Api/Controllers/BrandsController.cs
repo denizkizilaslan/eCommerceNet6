@@ -8,12 +8,20 @@ namespace ProductService.Api.Controllers
     public class BrandsController : ControllerBase
     {
         private IBrandService brandService;
-        public BrandsController(IBrandService brandService) => this.brandService = brandService;
+        private readonly ILogger<BrandsController> logger;
+        public BrandsController(IBrandService brandService, ILogger<BrandsController> logger)
+        {
+            this.brandService = brandService;
+            this.logger = logger;
+        }
       
 
         [HttpGet]
         [Route("GetBrands")]
-        public IActionResult GetBrands() => Ok(brandService.GetBrands());
-       
+        public IActionResult GetBrands()
+        {
+            logger.LogInformation("GetBrands executed");
+            return Ok(brandService.GetBrands());
+        }
     }
 }

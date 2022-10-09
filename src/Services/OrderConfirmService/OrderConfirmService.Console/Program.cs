@@ -1,9 +1,24 @@
 ﻿using EventBus.Base.Abstraction;
 using EventBus.Base.Configurations;
 using EventBus.Factory;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using OrderConfirmService.Console.Events.EventHandlers;
 using OrderConfirmService.Console.Events.Events;
+using OrderConfirmService.Console.Extensions;
+using Serilog;
+using Serilog.Sinks.Elasticsearch;
+using System.Reflection;
+
+
+
+
+ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+IConfiguration configuration = configurationBuilder.AddJsonFile("appsettings.json").AddEnvironmentVariables().Build();
+
+ElasticLogger.ConfigureSeriLog(configuration);
 
 ServiceProvider serviceProvider = new ServiceCollection()
                                             .AddTransient<eCommerceOrderCreatedIntegrationEventHandler>()
@@ -22,14 +37,17 @@ ServiceProvider serviceProvider = new ServiceCollection()
                                            .BuildServiceProvider();
 
 
-
-
 var eventBus = serviceProvider.GetRequiredService<IEventBus>();
 eventBus.Subscribe<eCommerceOrderCreatedIntegrationEvent, eCommerceOrderCreatedIntegrationEventHandler>();
 
 
 Task.Delay(2000).Wait();
-
-// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Consumer running...");
-//System.Console.ReadLine();
+
+
+Host.CreateDefaultBuilder(args)
+               .UseSerilog().Build().Run();
+
+
+
+ 
